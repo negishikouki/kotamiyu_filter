@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "こたみゆフィルター",
+    "version": "1.0",
+    "permissions": ["activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/watch?v=jP5nzt9Lvfo"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Lowpass Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lowpass Filter Settings</h2>
+  <label for="frequency">カットオフ周波数: <span id="freq-value">4000</span> Hz</label>
+  <input type="range" id="frequency" min="100" max="5000" value="4000" step="100">
+  <script>
+    // ポップアップ内のスクリプト
+    document.getElementById('frequency').addEventListener('input', (event) => {
+      const freqValue = event.target.value;
+      document.getElementById('freq-value').textContent = freqValue;
+
+      // カットオフ周波数を content.js に送信
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, { frequency: freqValue });
+      });
+    });
+  </script>
+</body>
+</html>
