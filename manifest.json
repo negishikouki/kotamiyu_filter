@@ -8,7 +8,7 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://www.youtube.com/watch?v=jP5nzt9Lvfo"],
+        "matches": ["*://www.youtube.com/watch?v=jP5nzt9Lvfo*"],
         "js": ["content.js"]
       }
     ],
